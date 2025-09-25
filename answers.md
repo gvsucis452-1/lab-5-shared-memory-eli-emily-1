@@ -14,7 +14,6 @@ Value a: 0x7fbb02ba4000  Value b: 0x7fbb02ba5000
 Size of shared memory: 4096%  
 ```
 
-
 5.
 ![the output of ipcs showing a leftover shared memory segment](./ipcs-leftover.png)
 ![the output of ipcs before and after calling ipcrm](./ipcs-post-ipcrm.png)

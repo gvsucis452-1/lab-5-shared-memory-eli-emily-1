@@ -31,11 +31,12 @@ int main ()
       exit (1); 
    }
 
+   shmctl(shmId, IPC_STAT, sharedMemoryPtrDS);
+   printf("Size of shared memory: %ld\n", sharedMemoryPtrDS->shm_segsz);
+
    printf("Value a: %p\t Value b: %p\tid: %d\n",
       (void *) sharedMemoryPtr, (void *) sharedMemoryPtr + SHM_SIZE, shmId);
    pause();
-   shmctl(shmId, IPC_STAT, sharedMemoryPtrDS);
-   printf("Size of shared memory: %ld", sharedMemoryPtrDS->shm_segsz);
    
 
    if(shmdt (sharedMemoryPtr) < 0) { 
