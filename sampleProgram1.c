@@ -3,7 +3,7 @@
  * sampleProgram1.c
  * CIS 451 Lab 5
  *
- * !!!NAMES!!!
+ * by Emily Heyboer and Eli Morgan
  *************************************************************/
 
 #include <stdio.h> 
