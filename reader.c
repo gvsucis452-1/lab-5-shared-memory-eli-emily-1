@@ -13,18 +13,11 @@
 #include <sys/ipc.h> 
 #include <sys/shm.h>
 
-
-void reader( struct shmid shMemPtr) {
+int main() {
     while (1)
     {
         /* code */
     }
     
-};
-
-int main() {
-    fork(); // Create 2nd instance
-    reader();
-
     return 0;
 }

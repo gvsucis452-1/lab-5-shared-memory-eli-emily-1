@@ -13,12 +13,13 @@
 #include <sys/ipc.h> 
 #include <sys/shm.h>
 
-
-void writer() {
-
-};
-
 int main() {
+    char *input;
+    while (1)
+    {
+        input = //fgets();
+    }
+    
 
     return 0;
 }
