@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #include <sys/ipc.h> 
 #include <sys/shm.h>
+#include <signal.h> // Required on Linux
 
 #define SHM_SIZE 4097
 #define PATH "README.md"
