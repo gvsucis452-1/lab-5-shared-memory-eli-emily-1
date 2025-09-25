@@ -1,6 +1,6 @@
 /**********************************************************
  *
- * write.c
+ * writer.c
  * CIS 451 Lab 5
  *
  * by Emily Heyboer and Eli Morgan
@@ -52,6 +52,7 @@ int main(int argc, char* argv[]) {
         if (*turn) {
             continue;
         }
+        
         printf("> ");
         fgets(message, SHM_SIZE - 1, stdin);
 
