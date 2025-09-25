@@ -19,6 +19,7 @@ int main ()
 { 
    int shmId; 
    char *sharedMemoryPtr;
+   struct shmid_ds *sharedMemoryPtrDS = malloc(sizeof(struct shmid_ds));
    
    if((shmId = shmget(IPC_PRIVATE, SHM_SIZE, IPC_CREAT|S_IRUSR|S_IWUSR)) < 0) { 
       perror ("Unable to get shared memory\n"); 
@@ -30,6 +31,9 @@ int main ()
    }
 
    printf("Value a: %p\t Value b: %p\n", (void *) sharedMemoryPtr, (void *) sharedMemoryPtr + SHM_SIZE);
+   shmctl(shmId, IPC_STAT, sharedMemoryPtrDS);
+   printf("Size of shared memory: %ld", sharedMemoryPtrDS->shm_segsz);
+   
 
    if(shmdt (sharedMemoryPtr) < 0) { 
       perror ("Unable to detach\n"); 
@@ -40,5 +44,6 @@ int main ()
       exit(1); 
    }
 
+   free(sharedMemoryPtrDS);
    return 0; 
 }
