@@ -14,6 +14,8 @@
 #include <sys/shm.h>
 
 #define SHM_SIZE 4097
+#define PATH "README.md"
+#define FTOK_ID 'e'
 int shmId;
 void* shared;
 
@@ -31,7 +33,7 @@ void handleSignal(int signal) {
 }
 
 int main(int argc, char* argv[]) {
-    key_t key = ftok("README.md", 'e');
+    key_t key = ftok(PATH, FTOK_ID);
 
     if ((shmId = shmget(key, SHM_SIZE, IPC_CREAT|S_IRUSR|S_IWUSR)) < 0) { 
         perror ("Unable to get shared memory\n"); 
@@ -52,7 +54,7 @@ int main(int argc, char* argv[]) {
         if (*turn) {
             continue;
         }
-        
+
         printf("> ");
         fgets(message, SHM_SIZE - 1, stdin);
 
