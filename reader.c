@@ -31,11 +31,13 @@ int main() {
     const int shmId = shmget(KEY, MAX_MSG_SIZE, READ_SHM);
     
     if (shmId < 0) { 
-      perror ("Unable to get shared memory\n"); 
+      perror ("Unable to get shared memory\n");
+      free(msg);
       exit (1); 
     } 
     if (msg == NULL) {
         perror("Malloc failed\n");
+        free(msg);
         exit(1);
     }
 
@@ -43,7 +45,8 @@ int main() {
     shmat(shmId, msg, 0); // Defaults to read/write permissions. Need write permission for FLAG byte.
 
     if(msg == (void*) -1) { 
-        perror ("Unable to attach\n"); 
+        perror ("Unable to attach\n");
+        free(msg);
         exit (1); 
     }
 
