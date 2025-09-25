@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #include <sys/ipc.h> 
 #include <sys/shm.h>
+#include <unistd.h>
 
 #define SHM_SIZE 4096
 
@@ -29,7 +30,9 @@ int main ()
       exit (1); 
    }
 
-   printf("Value a: %p\t Value b: %p\n", (void *) sharedMemoryPtr, (void *) sharedMemoryPtr + SHM_SIZE);
+   printf("Value a: %p\t Value b: %p\tid: %d\n",
+      (void *) sharedMemoryPtr, (void *) sharedMemoryPtr + SHM_SIZE, shmId);
+   pause();
 
    if(shmdt (sharedMemoryPtr) < 0) { 
       perror ("Unable to detach\n"); 
