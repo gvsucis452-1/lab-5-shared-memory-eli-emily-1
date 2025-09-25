@@ -1,6 +1,6 @@
 /**********************************************************
  *
- * sampleProgram1.c
+ * reader.c
  * CIS 451 Lab 5
  *
  * by Emily Heyboer and Eli Morgan
@@ -12,14 +12,10 @@
 #include <sys/stat.h>
 #include <sys/ipc.h> 
 #include <sys/shm.h>
+#include <string.h>
 
 #define MAX_MSG_SIZE 4097 // 1B Flag + 4KB Msg  
 #define READ_SHM 0
-
-struct sharedData {
-    char lock; // 0 - read mode, 1 - write mode
-    char msg[4096]; // Raw data
-}
 
 int main() {
     // Setup shared key
@@ -28,6 +24,7 @@ int main() {
 
     // Get & attach memory
     char *msg = malloc(MAX_MSG_SIZE);
+
     const int shmId = shmget(KEY, MAX_MSG_SIZE, READ_SHM);
     
     if (shmId < 0) { 
@@ -51,12 +48,19 @@ int main() {
     }
 
     // Handle new messages
+    // 0 - Read mode
+    // 1 - Write mode
+    // 2 - Open mode ..? Probably not
+
     while (1)
     {
         // 1. Check lock byte
         // 2. Compare messages
+        if (msg[0] == 0) {
+            strcpy(msg[1], );
         // 3. Print if different/new
         // 4. Unlock
+        }
     }
     
     free(msg);
