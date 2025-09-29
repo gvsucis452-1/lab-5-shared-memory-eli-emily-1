@@ -48,6 +48,7 @@ int main() {
     *turn = 0;
     char* message = shared + 1;
 
+    // zk The program needs to support at least _two_ readers. 
     while (1)
     {
         if (!*turn) {
