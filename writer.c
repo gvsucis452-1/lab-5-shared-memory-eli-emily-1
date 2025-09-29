@@ -47,6 +47,8 @@ int main(int argc, char* argv[]) {
 
     signal(SIGINT, handleSignal);
 
+    // zk Nice use of pointers to fit both into 
+    // a single shared memory space. 
     char* turn = shared;
     *turn = 0;
     char* message = shared + 1;
