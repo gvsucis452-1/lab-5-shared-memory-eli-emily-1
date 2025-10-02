@@ -46,18 +46,21 @@ int main(int argc, char* argv[]) {
 
     signal(SIGINT, handleSignal);
 
-    char* turn = shared;
-    *turn = 0;
-    char* message = shared + 1;
+    char* reader1 = shared;
+    char* reader2 = shared + 1;
+    *reader1 = 0;
+    *reader2 = 0;
+    char* message = shared + 2;
 
     while (1) {
-        if (*turn) {
+        if (!(*reader1 && *reader2)) {
             continue;
         }
 
         printf("> ");
         fgets(message, SHM_SIZE - 1, stdin);
 
-        *turn = 1;
+        *reader1 = 0;
+        *reader2 = 0;
     }
 }

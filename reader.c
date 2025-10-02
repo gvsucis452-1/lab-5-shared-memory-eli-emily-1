@@ -43,18 +43,21 @@ int main() {
 
     signal(SIGINT, handleSignal);
 
-    char* turn = shared;
-    *turn = 0;
-    char* message = shared + 1;
+    char* reader = shared;
+    if (*reader) {
+        reader = shared + 1;
+    }
+    *reader = 1;
+    char* message = shared + 2;
 
     while (1)
     {
-        if (!*turn) {
+        if (*reader) {
             continue;
         }
         printf("%s", message);
 
-        *turn = 0;
+        *reader = 1;
     }
     
     return 0;
