@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #include <sys/ipc.h> 
 #include <sys/shm.h>
+#include <signal.h> // Required on Linux
 
 #define SHM_SIZE 4097
 #define PATH "README.md"
@@ -51,6 +52,8 @@ int main(int argc, char* argv[]) {
     *reader1 = 0;
     *reader2 = 0;
     char* message = shared + 2;
+    // zk Nice use of pointers to fit both into 
+    // a single shared memory space. 
 
     while (1) {
         if (!(*reader1 && *reader2)) {

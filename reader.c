@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #include <sys/ipc.h> 
 #include <sys/shm.h>
+#include <signal.h> // Required on Linux
 
 #define SHM_SIZE 4097 // 1B Flag + 4KB Msg  
 #define PATH "README.md"
@@ -50,6 +51,7 @@ int main() {
     *reader = 1;
     char* message = shared + 2;
 
+    // zk The program needs to support at least _two_ readers. 
     while (1)
     {
         if (*reader) {
