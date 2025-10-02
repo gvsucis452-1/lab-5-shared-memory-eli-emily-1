@@ -14,7 +14,7 @@
 #include <sys/shm.h>
 #include <signal.h> // Required on Linux
 
-#define SHM_SIZE 4097 // 1B Flag + 4KB Msg  
+#define SHM_SIZE 4098 // 2 1B Flags + 4KB Msg  
 #define PATH "README.md"
 #define FTOK_ID 'e'
 int shmId;

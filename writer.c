@@ -14,7 +14,7 @@
 #include <sys/shm.h>
 #include <signal.h> // Required on Linux
 
-#define SHM_SIZE 4097
+#define SHM_SIZE 4098
 #define PATH "README.md"
 #define FTOK_ID 'e'
 int shmId;
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
         }
 
         printf("> ");
-        fgets(message, SHM_SIZE - 1, stdin);
+        fgets(message, SHM_SIZE - 2, stdin);
 
         *reader1 = 0;
         *reader2 = 0;
